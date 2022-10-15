@@ -54,4 +54,3 @@ This step enables the smooth animation transition, and hides all your posts on f
 ## Authors
 
 - Kendra Mulligan
-- Evercommerce Web Dev Team

@@ -1,0 +1,215 @@
+.comments-area{
+    display: none;
+}
+
+.default-grid{
+    display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+}
+
+#demo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly
+}
+
+.post-img {
+    border-top-right-radius: 5px !important;
+    border-top-left-radius: 5px !important;
+    height: 220px !important;
+    width: 100%;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+.card-item{
+    width: 32%;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.card-body{
+    padding: 20px 30px;
+}
+
+.bf-header h2{
+    font-weight: 400 !important;
+    font-size: 21px !important;
+    line-height: 25px;
+    color: #CE2B5F;
+    margin-bottom: 20px;
+}
+
+.entry-summary p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000000;
+}
+
+.meta{
+    margin-top: 50px;
+}
+
+.blog-filter{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.bf-label{
+    margin: 5px 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    color: #32324D;
+    vertical-align: middle;
+    justify-content: center;
+}
+
+input[type=checkbox]{
+    border: 1px solid #C0C0CF;
+    border-radius: 4px;
+    width: 18px;
+    height: 18px;
+}
+
+input[type="checkbox"]:checked {
+    background: #5058D2;
+}
+
+.m-active{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.d-active{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.active{
+    background: #5058D2;
+    border-radius: 2px;
+    text-transform: capitalize;
+    padding: 5px 10px;
+    color: #fff;
+    margin-right: 10px;
+    font-weight: 400;
+    border: 0.5px solid #5058D2;
+}
+
+.inactive{
+    background: #F5F5F5;
+    border: 0.5px solid #DDD;
+    color: #AAA;
+    font-weight: 400;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+.pagination{
+    display: flex;
+    align-items: center;
+}
+
+.page-numbers{
+    margin: 0 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #32324D;
+}
+
+.current{
+    box-shadow: 0px 1px 4px rgba(26, 26, 67, 0.1);
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+.next{
+    color: #666687;
+    font-size: 25px;
+}
+
+.prev{
+    color: #666687;
+    font-size: 25px;
+}
+
+
+  @media (max-width: 480px) {
+           .card{
+               width: 100% ;
+           }
+           .card-item{
+              width: 100%;
+           }
+           .card-body{
+            height: auto !important;
+           }
+             #is-container{
+               height: auto !important;
+           }
+           .default-grid {
+            position: relative !important;
+           }
+        }
+          
+        /* Media Query for low resolution  Tablets, Ipads */
+        @media (min-width: 481px) and (max-width: 767px) {
+            .card{
+               width: 100% ;
+           }
+            .card-item{
+              width: 100%;
+           }
+           .card-body{
+            height: auto !important;
+           }
+          #is-container{
+               height: auto !important;
+           }
+           .default-grid {
+            position: relative !important;
+           }
+        }
+          
+        /* Media Query for Tablets Ipads portrait mode */
+        @media (min-width: 768px) and (max-width: 1024px){
+           .card{
+               width: 30% ;
+           }
+            .card-item{
+              width: 95%;
+           }
+           .card-body{
+            height: auto !important;
+           }
+            #is-container{
+               height: auto !important;
+           }
+           .default-grid {
+            position: relative !important;
+           }
+        }
+          
+        /* Media Query for Laptops and Desktops */
+        @media (min-width: 1025px) and (max-width: 1280px){
+          
+        }
+          
+        /* Media Query for Large screens */
+        @media (min-width: 1281px) {
+           
+        }

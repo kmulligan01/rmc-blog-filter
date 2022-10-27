@@ -1,0 +1,49 @@
+/*admin area styles*/
+.tab button{
+    background-color: blue;
+    color: white;
+    padding: 10px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+}
+
+.tabcontent{
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.inst-link{
+    font-size: 16px;
+    color: #191919;
+}
+
+.inst-link p{
+    font-size: 16px;
+    color: #191919;
+}
+
+.i-first::marker{
+    font-size: 16px;
+    color: blue;
+    font-weight: bold;
+}
+
+.i-first h3{
+    color: blue;
+}
+
+.code{
+    background: #eee;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.shortcodes span{
+    font-size: 10px;
+    color: red;
+    font-style: italic;
+}

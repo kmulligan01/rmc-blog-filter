@@ -165,7 +165,7 @@ class EC_Cat_List_Widget extends \Elementor\Widget_Base {
 
 
 ?>
-<h3 class="block mt-4 font-bold font-black value-heading font-openSans"><?php echo esc_html( $settings['el_list_title'] ); ?></h3>
+<h3 class="block mt-4 nav-filter-title"><?php echo esc_html( $settings['el_list_title'] ); ?></h3>
     <div class="blog-filter" >
     
                 <label for="">

@@ -13,12 +13,17 @@ class ComposerStaticInitd1038cefb049cd6e5054ebcbebfa81c6
     public static $prefixLengthsPsr4 = array (
         'C' => 
         array (
+            'Composer\\Installers\\' => 20,
             'Carbon_Fields\\' => 14,
             'Carbon_Field_Icon\\' => 18,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Composer\\Installers\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
+        ),
         'Carbon_Fields\\' => 
         array (
             0 => __DIR__ . '/..' . '/htmlburger/carbon-fields/core',
@@ -31,6 +36,7 @@ class ComposerStaticInitd1038cefb049cd6e5054ebcbebfa81c6
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'TDP\\OptionsKit' => __DIR__ . '/..' . '/wp-user-manager/wp-optionskit/wp-optionskit.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

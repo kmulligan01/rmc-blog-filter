@@ -1,6 +1,12 @@
 {
     "require": {
         "htmlburger/carbon-fields": "^3.3",
-        "htmlburger/carbon-field-icon": "^3.1"
+        "htmlburger/carbon-field-icon": "^3.1",
+        "wp-user-manager/wp-optionskit": "^1.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
     }
 }

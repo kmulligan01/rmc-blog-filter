@@ -27,7 +27,7 @@ function icon_card() {
             
     
             ?>
-            <h3 class="block mt-4 font-bold font-black value-heading font-openSans"><?php echo esc_html( $fields['list_title'] ); ?></h3>
+            <h3 class="block mt-4 nav-filter-title"><?php echo esc_html( $fields['list_title'] ); ?></h3>
                 <div class="blog-filter" >
                 
                             <label for="">

@@ -8,9 +8,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 function my_default_posts($atts) {
   
     $a = shortcode_atts( array(
-        'tax_type' => 'resource_type',
-        'cat_type' => 'category',
-        'terms' => false,
+        'tax_type_1' => '',
+		'tax_type_2' => '',
+        'terms_1' => '',
+		'terms_2' => '',
 		'per_page' => '6',
         'offset' => '0'
 	), $atts );
@@ -18,10 +19,11 @@ function my_default_posts($atts) {
    // $tax_qry = [];
     $posts_per_page = $a['per_page'];
     $offset = $a['offset'];
-   $tax_type = $a['tax_type'];
-   $cat_type = $a['cat_type'];
+   $tax_type_1 = $a['tax_type_1'];
+   $tax_type_2 = $a['tax_type_2'];
 
-    $default_terms = $a['terms'];
+    $terms_1 = $a['terms_1'];
+	$terms_2 = $a['terms_2'];
 
 	$default_response = '';
 
@@ -29,24 +31,25 @@ function my_default_posts($atts) {
         'post_type' => array('post'),
         'post_status' => array('publish'),
         'posts_per_page' => $posts_per_page,
-        'order' => 'ASC',
+        'order' => 'DESC',
         'orderby' => 'date',
         'ignore_sticky_posts' => '1',
         'offset' => $offset,
         'tax_query' => array(
             'relation' => 'OR',
             array(
-            'taxonomy' => $tax_type,
+            'taxonomy' => $tax_type_1,
             'field'    => 'slug',
-            'terms'    => explode( ',', $default_terms ),
+            'terms'    => explode( ',', $terms_1 ),
             'hide_empty' => 'true'
             ),
-            array(
-                'taxonomy' => $cat_type,
-                'field'    => 'slug',
-                'terms'    => explode( ',', $default_terms ),
-                'hide_empty' => 'true'
-                )
+			array(
+				'taxonomy' => $tax_type_2,
+				'field'    => 'slug',
+				'terms'    => explode( ',', $terms_2 ),
+				'hide_empty' => 'true'
+			),
+           
         )
         
     );
@@ -75,7 +78,12 @@ function my_default_posts($atts) {
 				  </div>
 				  </a>
 				  <div class="meta ">		
-				  	<?php default_meta_btn($qry_posts, $default_terms);?>
+				  	<?php 
+					if($tax_type_1 != '' || $tax_type_2 != ''){
+						display_meta_btn($terms_1, $terms_2);
+					}
+				
+					?>
 				  </div>					  
 			  </div>						
 		  </article>
@@ -97,45 +105,44 @@ function my_default_posts($atts) {
 
 add_shortcode( 'default_posts' , 'my_default_posts' );
 
+
 //toggle which meta buttons display as active/inactive based terms in taxonomy
-function default_meta_btn($qry_posts,$default_terms){
-	$category = get_the_terms($qry_posts->ID, 'category');
-	$type = get_the_terms($qry_posts->ID, 'resource_type');	
+function display_meta_btn($terms_1, $terms_2){
 
-	$cat_name = join(', ' , wp_list_pluck($category, 'name'));
-	$type_name = join(', ' , wp_list_pluck($type, 'name'));
 
-	$ind_terms = explode( ',', $default_terms );
+	$ind_terms_1 = explode( ',', $terms_1 );
+	$ind_terms_2 = explode( ',', $terms_2 );
+
+	
 	$count = 0;
 
-	if($count <= 3){?>
+	if($count <= 3  ){?>
 	<div class="d-active">	
 		<?php 
 		//buttons for active
-        foreach($ind_terms as $term){		
-			if(term_exists($term, 'category') && $type_name != '' && $count < 3){					
-				echo '<p class="d-purple">'. $term . '</p>'; 						 
-			}elseif(term_exists($term, 'resource_type') && $cat_name != '' && $count < 3){
-				echo '<p class="d-purple">'. $term . '</p>'; 				
-			}else{
-				echo '<p class="d-purple">'. $term . '</p>';							
+    	foreach($ind_terms_1 as $term1 ){		
+			if( $count < 3 && $term1 != ''){
+				$term1 = str_replace( 'yes', 'Featured', $term1);
+				echo '<p class="d-purple">'. ucfirst($term1).' </p>'; 			
+							 
+			}else if($count > 3){
+				echo '';
 			}
 			$count ++;
 	 	} 
 
-		//buttons for inactive
-	  	foreach($ind_terms as $term){					
-			if(term_exists($term, 'category') && $type_name != '' && $count <= 2 ){
-				echo '<p class="d-gray">' . $type_name . '</p>';
-				
-			}elseif(term_exists($term, 'resource_type') && $cat_name != '' && $count <= 2){
-				echo '<p class="d-gray">' . $cat_name . '</p>';
+		 foreach($ind_terms_2 as $term2){					
+			if($count <= 2 && $term2 != ''){
+				$term1 = str_replace( 'yes', 'Featured', $term2);
+				echo '<p class="d-gray">' . ucfirst($term2) . '</p>';
 				
 			}else{
 				echo ''; 
 			}
 			$count ++;
 		} 
+
+	 
 	 ?>
 	</div>
 	<?php	

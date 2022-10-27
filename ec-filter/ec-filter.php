@@ -3,7 +3,7 @@
  * Plugin Name: Blog Filter Widget
  * Description: Custom Blog Filter widget to use on resource center pages
  * Plugin URI:  https://www.evercommerce.com/
- * Version:     1.0.0
+ * Version:     1.0.4
  * Author:      EverCommerce GD Dev Team
  * Author URI:  https://www.evercommerce.com/
  * Text Domain: ec-bf-widget
@@ -13,6 +13,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+//create options page with instructions
+require_once( __DIR__ . '/admin/admin-setup.php' );
 
 //register block and shortcode params
 require_once( __DIR__ . '/widgets/carbon-widget.php' );
@@ -37,11 +39,27 @@ add_action( 'after_setup_theme', 'carbon_fields_boot_plugin' );
 //enqueue all scripts/styles and localize ajax script
 function my_theme_scripts() {
     wp_enqueue_script( 'isotope',  plugin_dir_url( __DIR__ ) . 'ec-filter/assets/js/isotope.js', array ( 'jquery' ), true);
+
 	wp_enqueue_script( 'ajax-script', plugin_dir_url( __DIR__ ) . 'ec-filter/assets/js/main.js', array('jquery'), true );
 	wp_localize_script( 'ajax-script', 'my_ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+
 	wp_enqueue_style('my_styles', plugin_dir_url( __DIR__ ) . 'ec-filter/assets/css/blog-filter.css');
+	
 }
 add_action( 'wp_enqueue_scripts', 'my_theme_scripts' );
+
+//loads styles for the admin option page
+function load_custom_wp_admin_style() {
+    wp_register_style( 'custom_wp_admin_css', plugin_dir_url( __DIR__ ) .  'ec-filter/admin/css/admin.css', false, '1.0.0' );
+    wp_enqueue_style( 'custom_wp_admin_css' );
+
+	wp_register_script('my-script',   plugin_dir_url( __DIR__ ) . 'ec-filter/admin/js/admin.js', array('jquery'), true );
+	wp_enqueue_script( 'my-script');
+}
+add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
+
+add_filter( 'plugin_action_links', 'wpse_25030_settings_plugin_link', 10, 2 );
+
 
 //Filter the excerpt length & edit the trailing end.
 function custom_short_excerpt($excerpt){
@@ -98,10 +116,11 @@ function get_ajax_posts() {
 	<?php
    if ( $ajaxposts->have_posts() ) {
 	   while ( $ajaxposts->have_posts() ) {
-		   $ajaxposts->the_post();?>
+		   $ajaxposts->the_post();
+	?>
 		  <article class="card-item">			
 				  <?php if ( has_post_thumbnail() ) : 
-					$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
+					$url = wp_get_attachment_url( get_post_thumbnail_id($ajaxpost->ID) ); ?>
 					<div class="post-img" style="background: url('<?php echo $url?>') no-repeat;" ></div>
 				  <?php endif;?>		
 			  <div class="card-body">
@@ -145,18 +164,22 @@ function meta_btn($ajaxposts, $terms){
 
 	$ind_terms = explode( ',', $terms );
 	$count = 0;
-
 	?>
 	<div class="m-active">	
 		<?php 
 		//buttons for active
 		foreach($ind_terms as $term){		
-			if(term_exists($term, 'category') && $type_name != '' && $count < 3){					
-				echo '<p class="purple">'. $term . '</p>'; 						 
+			if(term_exists($term, 'category') && $type_name != '' && $count < 3){
+				$new_term = strtr($term, "-", " ");
+				echo '<p class="purple">'. $new_term . '</p>'; 		
+							 
 			}elseif(term_exists($term, 'resource_type') && $cat_name != '' && $count < 3){
-				echo '<p class="purple">'. $term . '</p>'; 				
+					$new_term = strtr($term, "-", " ");
+					echo '<p class="purple">'. $new_term . '</p>'; 				
+				
 			}elseif($count <3){
-				echo '<p class="purple">'. $term . '</p>';							
+				$new_term = strtr($term, "-", " ");
+				echo '<p class="purple">'. $new_term . '</p>';							
 			}
 			$count ++;
 	 	} 
@@ -205,3 +228,5 @@ function ajax_pager( $ajaxposts, $page ) {
 
 
 }
+
+

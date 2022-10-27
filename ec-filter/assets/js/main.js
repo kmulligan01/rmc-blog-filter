@@ -28,16 +28,20 @@
     
     $checkboxes.each( function( i, elem ) {       
       if ( elem.checked && elem.value != 'all') {
-        $inclusives.push( elem.value );         
+        $replace = elem.value.replace(/[\s][^\w][\s]/g, '-and-');
+        $inclusives.push($replace.toLowerCase());         
       }         
     });
 
     $params = '';
 
     if($inclusives.length){
-      $params = $inclusives.join(', ');
-      $allText.prop('checked', false);
       
+      $params = $inclusives.join(', ');
+      console.log($params)
+    
+      $allText.prop('checked', false);
+   
     }else {
       $allText.prop('checked', true);
       $params = '*';
@@ -86,7 +90,6 @@ $newContent.on('click', '.pagination a', function(e) {
           $meta_btn = $('.m-active');
           $purple = $('.purple');
           $gray = $('.gray');       
-          console.log($meta_btn) 
           
           if($meta_btn){
             $purple.addClass('active');
@@ -103,7 +106,6 @@ $newContent.on('click', '.pagination a', function(e) {
 $meta_btn = $('.d-active');
 $purple = $('.d-purple');
 $gray = $('.d-gray');       
-console.log($meta_btn) 
 
 if($meta_btn){
   $purple.addClass('active');

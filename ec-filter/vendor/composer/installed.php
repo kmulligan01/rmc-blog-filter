@@ -19,6 +19,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'composer/installers' => array(
+            'pretty_version' => 'v1.12.0',
+            'version' => '1.12.0.0',
+            'reference' => 'd20a64ed3c94748397ff5973488761b22f6d3f19',
+            'type' => 'composer-plugin',
+            'install_path' => __DIR__ . '/./installers',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'htmlburger/carbon-field-icon' => array(
             'pretty_version' => 'v3.1.0',
             'version' => '3.1.0.0',
@@ -34,6 +43,27 @@
             'reference' => '2ae6773c004b873a1b0456613b14852c1a436a96',
             'type' => 'library',
             'install_path' => __DIR__ . '/../htmlburger/carbon-fields',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'roundcube/plugin-installer' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '*',
+            ),
+        ),
+        'shama/baton' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '*',
+            ),
+        ),
+        'wp-user-manager/wp-optionskit' => array(
+            'pretty_version' => '1.1.2',
+            'version' => '1.1.2.0',
+            'reference' => '6253bda447991733bf8e19cb2123b41c666f3d62',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../wp-user-manager/wp-optionskit',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

@@ -47,7 +47,7 @@ class EC_Cat_List_Widget extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Cat List Checkboxes', 'ec-bf-widget' );
+		return esc_html__( 'Cat List Checkboxes', 'rmcfilter' );
 	}
 
 	/**
@@ -109,7 +109,7 @@ class EC_Cat_List_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => esc_html__( 'Content', 'ec-bf-widget' ),
+				'label' => esc_html__( 'Content', 'rmcfilter' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -117,7 +117,7 @@ class EC_Cat_List_Widget extends \Elementor\Widget_Base {
     $this->add_control(
 			'el_list_title',
 			[
-				'label' => esc_html__( 'List title', 'ec-bf-widget' ),
+				'label' => esc_html__( 'List title', 'rmcfilter' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 			]
 		);
@@ -125,7 +125,7 @@ class EC_Cat_List_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'el_list_tax',
 			[
-				'label' => esc_html__( 'List Tax', 'ec-bf-widget' ),
+				'label' => esc_html__( 'List Tax', 'rmcfilter' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 			]
 		);
@@ -133,7 +133,7 @@ class EC_Cat_List_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'el_all_text',
 			[
-				'label' => esc_html__( 'All Text', 'ec-bf-widget' ),
+				'label' => esc_html__( 'All Text', 'rmcfilter' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 			]
 		);

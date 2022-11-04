@@ -3,9 +3,9 @@
 use Carbon_Fields\Block;
 use Carbon_Fields\Field;
 
-add_action( 'carbon_fields_register_fields','icon_card' );
+add_action( 'carbon_fields_register_fields','cat_list_checkboxes' );
 
-function icon_card() {    
+function cat_list_checkboxes() {    
     Block::make( __( 'Cat List-Checkboxes' ) )
         ->add_fields( array(
             Field::make( 'text', 'list_title',  'List Title'  ),

@@ -1,37 +1,27 @@
 <?php
-/**
-*
- */
 
-function admin_scripts() {
-wp_enqueue_style('admin_styles', plugin_dir_url( __DIR__ ) . '/css/admin.css');
-
+//create settings page
+function ec_filter_default_sub_pages(){
+    add_options_page(
+        __('Blog Filter Instructions', 'ec-filter'), //page title
+        __('Blog Filter Settings', 'ec-filter'), //menu title
+        'manage_options', //where to place
+        'rmcfilter-settings', //url
+        'rmcfilter_settings_page_markup' //function to display the settings
+    );
 }
-add_action( 'wp_enqueue_scripts', 'admin_scripts' );
 
-class ECBlogFilter {
-	private $ec_blog_filter_options;
+add_action( 'admin_menu', 'ec_filter_default_sub_pages');
 
-	public function __construct() {
-		add_action( 'admin_menu', array( $this, 'ec_blog_filter_add_plugin_page' ) );
-		//add_action( 'admin_init', array( $this, 'ec_blog_filter_page_init' ) );
-	}
+function rmcfilter_settings_page_markup(){
+    if(!current_user_can('manage_options')){
+        return;
+    }
 
-	public function ec_blog_filter_add_plugin_page() {
-		add_options_page(
-			'EC Blog Filter', // page_title
-			'EC Blog Filter', // menu_title
-			'manage_options', // capability
-			'ec-blog-filter', // menu_slug
-			array( $this, 'ec_blog_filter_create_admin_page' ) // function
-		);
-	}
+    ?>
 
-	public function ec_blog_filter_create_admin_page() {
-		$this->ec_blog_filter_options = get_option( 'ec_blog_filter_option_name' ); ?>
-
-		<div class="wrap">
-			<h2>EC Blog Filter</h2>
+    <div class="wrap">
+			<h2><?php esc_html_e( get_admin_page_title());?></h2>
 			<p>This page helps provide instructions and shortcodes for the EC Blog filter plugin</p>
            
             <!-- Tab links -->
@@ -104,12 +94,5 @@ class ECBlogFilter {
                     
 
 		</div>
-	<?php }
-
+<?php 
 }
-if ( is_admin() )
-	$ec_blog_filter = new ECBlogFilter();
-
-
-
-?>

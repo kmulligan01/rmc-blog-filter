@@ -16,7 +16,7 @@ function my_default_posts($atts) {
         'offset' => '0'
 	), $atts );
 
-   // $tax_qry = [];
+   
     $posts_per_page = $a['per_page'];
     $offset = $a['offset'];
    $tax_type_1 = $a['tax_type_1'];
